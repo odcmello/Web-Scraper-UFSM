@@ -26,7 +26,8 @@ func (p *pRepository) GetProfiles() ([]*model.Profile, error) {
 	profiles := make([]*model.Profile, 0)
 	for rows.Next() {
 		var profile model.Profile
-		if err = rows.Scan(&profile.ID, &profile.Name, &profile.JobTitle, &profile.Company, &profile.Location, &profile.URL); err != nil {
+		if err = rows.Scan(&profile.ID, &profile.Name, &profile.JobTitle, &profile.Company, &profile.Location,
+			&profile.URL, &profile.Curso, &profile.AnoEvasao); err != nil {
 			return nil, err
 		}
 		profiles = append(profiles, &profile)
