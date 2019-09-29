@@ -4,7 +4,9 @@ import (
 	"api-egressos/database"
 	"api-egressos/handler"
 	"fmt"
+	"log"
 	"net/http"
+	"path/filepath"
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
@@ -23,6 +25,12 @@ func main() {
 	r.Use(cors.Handler)
 
 	r.Get("/egressos", handler.GetProfiles)
+	r.Get("/", handler.GetPage)
+
+	abspath, _ := filepath.Abs("./pages/static")
+	log.Println("abacate")
+	log.Println(abspath)
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir(abspath))))
 
 	fmt.Println("Listening on port: 8000")
 

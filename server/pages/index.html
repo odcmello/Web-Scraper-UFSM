@@ -4,10 +4,44 @@
 <head>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="egressos.css">
+    <link rel="stylesheet" href="css/egressos.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
+
+<style>
+    body {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+        background-color: #e8eaf6;
+    }
+
+    main {
+        flex: 1 0 auto;
+    }
+
+    table {
+        width: 50%;
+        margin-left: 25%;
+        margin-top: 12%;
+        border: 2px solid #3F51B5;
+    }
+
+    th {
+        font-weight: normal;
+        color: white;
+        text-align: center;
+    }
+
+    td {
+        text-align: center;
+    }
+
+    .container p{
+        margin-left: 33%;
+    }   
+</style>
 
 <body>
     <main>
@@ -24,8 +58,8 @@
             </thead>
 
             <tbody class="white">
+                {{range .Profiles}}
                 <tr>
-                    {{range .Profiles}}
                     <td>{{.Name}}</td>
                     <td>{{.JobTitle}}</td>
                     <td>{{.Company}}</td>
@@ -33,6 +67,7 @@
                     <td>{{.AnoEvasao}}</td>
                     <td>{{.Curso}}</td>
                 </tr>
+                {{end}}
             </tbody>
         </table>
         </table>
@@ -43,5 +78,4 @@
         </div>
     </footer>
 </body>
-
 </html>
