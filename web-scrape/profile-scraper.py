@@ -19,12 +19,12 @@ driver.get('https://www.linkedin.com/login')
 username = driver.find_element_by_id('username')
 
 # Envia email para o formulário
-username.send_keys('ocruzmello@gmail.com')
+username.send_keys('user_email')
 sleep(1)
 password = driver.find_element_by_id('password')
 
 # Envia senha para o formulário
-password.send_keys('sistufsm2019')
+password.send_keys('user_password')
 sleep(1)
 login_button = driver.find_element_by_xpath('//*[@type="submit"]')
 
@@ -34,7 +34,7 @@ driver.get("https://www.linkedin.com/feed")
 sleep(3)
 
 global_search_input = driver.find_element_by_xpath('//*[@id="ember34"]/input')
-global_search_input.send_keys('Gabriel Gomes Pereira')
+global_search_input.send_keys('Everson de Freitas Feltrin')
 sleep(1)
 
 global_search_input.send_keys(Keys.RETURN)
@@ -47,9 +47,14 @@ html_page = driver.page_source
 
 soup = BeautifulSoup(html_page, "html.parser")
 
-for link in soup.find_all('a', attrs={'href': re.compile('/in/')}):
+profile_links = soup.find_all('a', attrs={'href': re.compile('/in/')})
+
+for link in profile_links:
     print(link.get("href"))
 
+profile_url = "https://www.linkedin.com" + profile_links[0].get("href")
+
+driver.get(profile_url)
 
 sleep(20)
 driver.quit()
