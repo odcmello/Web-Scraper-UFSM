@@ -14,7 +14,7 @@ type Database struct {
 var Db Database
 
 func CreateConnection() {
-	source := fmt.Sprintf("%s:%s@(%s:%s)/%s", "gabriel", "12345", "localhost", "3306", "egressos_informatica")
+	source := fmt.Sprintf("%s:%s@(%s:%s)/%s", "root", "ggp0898", "localhost", "3306", "egressos_informatica")
 	dbConn, err := sqlx.Connect("mysql", source)
 	if err != nil {
 		panic(err)

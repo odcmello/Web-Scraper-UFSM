@@ -19,12 +19,12 @@ driver.get('https://www.linkedin.com/login')
 username = driver.find_element_by_id('username')
 
 # Envia email para o formulário
-username.send_keys('user_email')
+username.send_keys('ocruzmello@gmail.com')
 sleep(1)
 password = driver.find_element_by_id('password')
 
 # Envia senha para o formulário
-password.send_keys('user_password')
+password.send_keys('sistufsm2019')
 sleep(1)
 login_button = driver.find_element_by_xpath('//*[@type="submit"]')
 
@@ -34,7 +34,7 @@ driver.get("https://www.linkedin.com/feed")
 sleep(3)
 
 global_search_input = driver.find_element_by_xpath('//*[@id="ember34"]/input')
-global_search_input.send_keys('Everson de Freitas Feltrin')
+global_search_input.send_keys('Gabriel Gomes Pereira')
 sleep(1)
 
 global_search_input.send_keys(Keys.RETURN)
