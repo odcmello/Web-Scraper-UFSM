@@ -107,7 +107,7 @@ with open('egressos.csv', 'w') as csv_file:
     count = 1 
     for row in csv_reader:
         print("search count:", count) 
-        profile_dict = getProfileData(row["NOME_PESSOA"])
+        profile_dict = getProfileData(row["NOME_PESSOA"], 3)
         if len(profile_dict) > 0:
             profile_dict["curso"] = row["NOME_CURSO"]
             profile_dict["ano_evasao"] = row["ANO_EVASAO"]
