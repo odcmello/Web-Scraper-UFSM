@@ -37,6 +37,9 @@ def getProfileData(personName: str, limit: int):
         college = sel.xpath('//*[@id="ember95"]/text()').extract_first()
         if college:
             college = college.strip()
+        # check if profile college not exists 
+        if college is None:
+            continue 
         # check if college is "universidade federal de santa maria"
         if college.casefold() != "universidade federal de santa maria":
             # check if limit reached 
@@ -52,7 +55,7 @@ def getProfileData(personName: str, limit: int):
         name = sel.xpath('//*[@id = "ember45"]/div[2]/div[2]/div[1]/ul[1]/li[1]/text()').extract_first()
         if name:
             name = name.strip()
-            profile_dict["name"] = name 
+            profile_dict["nome"] = name 
 
         job_title = sel.xpath( '//*[@id="ember45"]/div[2]/div[2]/div[1]/h2/text()').extract_first()
         if job_title:
@@ -98,23 +101,29 @@ login_button = driver.find_element_by_xpath('//*[@type="submit"]')
 login_button.click()
 sleep(2.5)
 
-# access linkedin feed page 
-driver.get('https://www.linkedin.com/feed')
 # search for persons based on csv file 
 # load csv 
-with open('egressos.csv', 'w') as csv_file: 
+with open('egressos.csv') as csv_file: 
     csv_reader = csv.DictReader(csv_file, delimiter=',')
     count = 1 
     for row in csv_reader:
+        # access linkedin feed page
+        driver.get('https://www.linkedin.com/feed')
+        outputFileExists = False 
+        print(row["NOME_PESSOA"])
         print("search count:", count) 
         profile_dict = getProfileData(row["NOME_PESSOA"], 3)
         if len(profile_dict) > 0:
             profile_dict["curso"] = row["NOME_CURSO"]
             profile_dict["ano_evasao"] = row["ANO_EVASAO"]
-            with open('egressos_encontrados.csv') as csv_writer: 
+            with open('egressos_encontrados.csv', 'a+') as csv_writer: 
                 fields = ['nome', 'job_title', 'company', 'location', 'url', 'curso', 'ano_evasao']
-                writer = csv.DictWriter(csv_file, fieldnames=fields)
-                writer.writeheader()
+                writer = csv.DictWriter(csv_writer, fieldnames=fields)
+                if not outputFileExists:
+                    writer.writeheader()
                 writer.writerow(profile_dict)
+                outputFileExists = True 
+        count += 1 
         sleep(1.5)
+sleep(20)
 driver.quit()      
