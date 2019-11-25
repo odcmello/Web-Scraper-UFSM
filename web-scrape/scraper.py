@@ -104,12 +104,12 @@ sleep(2.5)
 # search for persons based on csv file 
 # load csv 
 with open('egressos.csv') as csv_file: 
+    outputFileExists = False 
     csv_reader = csv.DictReader(csv_file, delimiter=',')
     count = 1 
     for row in csv_reader:
         # access linkedin feed page
         driver.get('https://www.linkedin.com/feed')
-        outputFileExists = False 
         print(row["NOME_PESSOA"])
         print("search count:", count) 
         profile_dict = getProfileData(row["NOME_PESSOA"], 3)
@@ -118,7 +118,7 @@ with open('egressos.csv') as csv_file:
             profile_dict["ano_evasao"] = row["ANO_EVASAO"]
             with open('egressos_encontrados.csv', 'a+') as csv_writer: 
                 fields = ['nome', 'job_title', 'company', 'location', 'url', 'curso', 'ano_evasao']
-                writer = csv.DictWriter(csv_writer, fieldnames=fields)
+                writer = csv.DictWriter(csv_writer, fieldnames=fields, delimiter=';', lineterminator='\n')
                 if not outputFileExists:
                     writer.writeheader()
                 writer.writerow(profile_dict)
@@ -127,3 +127,4 @@ with open('egressos.csv') as csv_file:
         sleep(1.5)
 sleep(20)
 driver.quit()      
+## PAROU NO 299
