@@ -5,7 +5,6 @@ import (
 	"api-egressos/model"
 	"api-egressos/repository"
 	"context"
-	"log"
 
 	"github.com/huandu/go-sqlbuilder"
 	"github.com/jmoiron/sqlx"
@@ -48,8 +47,6 @@ func (p *pRepository) GetProfiles(ctx context.Context) ([]*model.Profile, error)
 
 	// Build and exec query
 	query, args := sb.Build()
-	log.Println(query)
-
 	rows, err := database.Db.Conn.Query(query, args...)
 
 	if err != nil {
