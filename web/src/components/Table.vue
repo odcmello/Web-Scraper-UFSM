@@ -4,8 +4,6 @@
   </section>
 </template>
 
-nome;job_title;company;location;url;curso;ano_evasao
-
 <script>
     export default {
         name: "Table",
