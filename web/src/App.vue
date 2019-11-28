@@ -2,13 +2,8 @@
   <div id="app">
     <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
-          <img
-            src="https://bulma.io/images/bulma-logo-white.png"
-            alt="Bulma: Free, open source, and modern CSS framework based on Flexbox"
-            width="112"
-            height="28"
-          />
+        <a class="navbar-item" style="text-align:center;">
+          <p style='font-weight: bold;'>EgressosPass</p>
         </a>
         <a
           role="button"

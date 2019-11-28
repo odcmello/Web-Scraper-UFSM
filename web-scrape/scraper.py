@@ -116,7 +116,7 @@ with open('egressos.csv') as csv_file:
         if len(profile_dict) > 0:
             profile_dict["curso"] = row["NOME_CURSO"]
             profile_dict["ano_evasao"] = row["ANO_EVASAO"]
-            with open('egressos_encontrados.csv', 'a+') as csv_writer: 
+            with open(file='egressos_encontrados.csv', mode='a+', encoding="utf8") as csv_writer: 
                 fields = ['nome', 'job_title', 'company', 'location', 'url', 'curso', 'ano_evasao']
                 writer = csv.DictWriter(csv_writer, fieldnames=fields, delimiter=';', lineterminator='\n')
                 if not outputFileExists:

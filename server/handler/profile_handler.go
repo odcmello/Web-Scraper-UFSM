@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
+	"log"
 )
 
 // type ProfilePageData struct {
@@ -26,6 +27,7 @@ func GetProfiles(w http.ResponseWriter, r *http.Request) {
 	profiles, err := service.GetProfiles(ctx)
 
 	if err != nil {
+		log.Println(err)
 		http.Error(w, "Internal Error", http.StatusInternalServerError)
 		return
 	}

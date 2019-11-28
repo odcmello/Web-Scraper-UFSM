@@ -1,14 +1,14 @@
 package model
 
 type Profile struct {
-	ID        int64
-	Name      string
-	JobTitle  string
-	Company   string
-	Location  string
-	URL       string
-	Curso     string
-	AnoEvasao int
+	ID        int64  `json:"id"`
+	Name      string `json:"nome"`
+	JobTitle  string `json:"job_title"`
+	Company   string `json:"company"`
+	Location  string `json:"location"`
+	URL       string `json:"url"`
+	Curso     string `json:"curso"`
+	AnoEvasao int    `json:"ano_evasao"`
 }
 
 var FiltersMapper = map[string]func(filters map[string]interface{}, value interface{}){
